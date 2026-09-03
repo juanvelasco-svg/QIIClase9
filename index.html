@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Química II | Clase 9: Soluciones Amortiguadoras</title>
+
+  <!-- Carga de MathJax -->
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [
+          ['$', '$'],
+          ['\\(', '\\)']
+        ],
+        displayMath: [
+          ['$$', '$$'],
+          ['\\[', '\\]']
+        ]
+      },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    :root {
+      --QII-gold: #D97706;
+      --QII-dark: #022C22;
+      --QII-blue: #064E3B;
+      --QII-light: #10B981;
+      --accent: #DC2626;
+      --accent-orange: #F59E0B;
+      --accent-purple: #7C3AED;
+      --text: #111827;
+      --white: #ffffff;
+      --sand: #FEF3C7;
+      --shadow: rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ul:not(.map-tree),
+    ol {
+      padding-left: 2.4rem;
+      margin: 0.5rem 0 1rem;
+    }
+    ul:not(.map-tree) {
+      list-style: none;
+    }
+    ul:not(.map-tree) li,
+    ol li {
+      margin: 0.45rem 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--QII-dark) 0%, var(--QII-blue) 100%);
+      color: var(--white);
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 6px 20px var(--shadow);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 5px solid var(--QII-gold);
+    }
+
+    .logo-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo-qii {
+      width: 120px;
+      height: auto;
+      background: var(--white);
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: var(--QII-gold);
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.95;
+      font-weight: 300;
+    }
+
+    .nav-container {
+      background: var(--QII-dark);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 12px var(--shadow);
+      border-bottom: 2px solid var(--QII-gold);
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .nav-btn {
+      background: var(--QII-blue);
+      color: var(--white);
+      border: 1px solid var(--QII-gold);
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+      font-size: 0.95rem;
+    }
+
+    .nav-btn:hover,
+    .nav-btn.active {
+      background: var(--QII-gold);
+      color: var(--QII-dark);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(234, 179, 8, 0.4);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 24px var(--shadow);
+      border-left: 6px solid var(--QII-gold);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      color: var(--QII-blue);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 3px solid var(--QII-gold);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 2rem;
+    }
+
+    h3 {
+      color: var(--QII-light);
+      margin: 1.5rem 0 1rem;
+      font-size: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .img-container {
+      text-align: center;
+      margin: 2rem 0;
+      background: #f8fafc;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px dashed var(--QII-gold);
+    }
+
+    .img-caption {
+      font-style: italic;
+      color: #666;
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .calculator {
+      background: linear-gradient(135deg, #fefcbf 0%, #fef3c7 100%);
+      border: 3px solid var(--QII-gold);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+
+    .calc-title {
+      color: var(--QII-dark);
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: bold;
+    }
+
+    .calc-input-group {
+      margin: 1rem 0;
+    }
+    .calc-input-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--QII-dark);
+    }
+    .calc-input-group input,
+    .calc-input-group select {
+      width: 100%;
+      padding: 0.8rem;
+      border: 2px solid var(--QII-gold);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+      background: #fff;
+    }
+    .calc-input-group input:focus,
+    .calc-input-group select:focus {
+      outline: none;
+      border-color: var(--QII-blue);
+    }
+
+    .calc-button {
+      background: var(--QII-dark);
+      color: var(--QII-gold);
+      border: 2px solid var(--QII-gold);
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    .calc-button:hover {
+      background: var(--QII-gold);
+      color: var(--QII-dark);
+      transform: translateY(-2px);
+    }
+
+    .calc-result {
+      background: var(--white);
+      border-left: 5px solid var(--accent);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      display: none;
+    }
+    .calc-result.show {
+      display: block;
+      animation: slideIn 0.5s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px var(--shadow);
+    }
+    th {
+      background: linear-gradient(135deg, var(--QII-dark) 0%, var(--QII-blue) 100%);
+      color: var(--QII-gold);
+      padding: 1.2rem;
+      text-align: left;
+      font-weight: 600;
+    }
+    td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #e2e8f0;
+      transition: background 0.3s;
+    }
+    tr:hover td {
+      background: #fefcbf;
+    }
+
+    .info-box {
+      background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+      border-left: 5px solid #3182ce;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #fefcbf 0%, #fef3c7 100%);
+      border-left: 5px solid var(--QII-gold);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .bio-box {
+      background: linear-gradient(135deg, #e6fffa 0%, #b2f5ea 100%);
+      border-left: 5px solid #319795;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .pharma-box {
+      background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+      border-left: 5px solid var(--accent);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .problem-box {
+      background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+      border-left: 5px solid #38a169;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+
+    details.solution {
+      margin-top: 1rem;
+      background: #f8fafc;
+      border: 2px solid var(--QII-light);
+      border-radius: 10px;
+      padding: 0.8rem 1.2rem;
+    }
+    details.solution summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--QII-blue);
+    }
+    details.solution[open] summary {
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--QII-light);
+      padding-bottom: .4rem;
+    }
+
+    .mnemonic-card {
+      background: linear-gradient(135deg, #fff5f5 0%, #feebc8 100%);
+      border: 3px solid var(--accent-orange);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .mnemonic-title {
+      color: var(--accent-orange);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      font-size: 1.2rem;
+    }
+
+    .glossary-term {
+      background: var(--white);
+      border: 2px solid var(--QII-gold);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 0.8rem 0;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .glossary-term:hover {
+      background: #fefcbf;
+      transform: translateX(5px);
+    }
+    .glossary-definition {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--QII-gold);
+    }
+    .glossary-definition.show {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .error-card {
+      background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+      border-left: 5px solid var(--accent);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-radius: 0 12px 12px 0;
+    }
+    .error-title {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .correction {
+      background: #c6f6d5;
+      border-left: 3px solid #38a169;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .quiz-container {
+      background: linear-gradient(135deg, var(--QII-dark) 0%, var(--QII-blue) 100%);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      border: 3px solid var(--QII-gold);
+    }
+
+    .quiz-question-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--QII-gold);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .quiz-question {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+      color: var(--QII-gold);
+    }
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0.8rem;
+    }
+    .quiz-option {
+      background: var(--white);
+      color: var(--text);
+      border: 2px solid transparent;
+      padding: 0.9rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      text-align: left;
+    }
+    .quiz-option:hover:not(:disabled) {
+      border-color: var(--QII-gold);
+      transform: translateY(-2px);
+    }
+    .quiz-option:disabled {
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+    .quiz-option.correct {
+      background: #38a169;
+      color: white;
+      border-color: #22543d;
+    }
+    .quiz-option.incorrect {
+      background: #e53e3e;
+      color: white;
+      border-color: #742a2a;
+    }
+    .quiz-explanation {
+      margin-top: 0.8rem;
+      padding: 0.8rem;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 6px;
+      font-size: 0.95rem;
+      color: #fff;
+      display: none;
+    }
+
+    .quiz-progress {
+      max-width: 720px;
+      margin: 0 auto 1rem;
+    }
+    .quiz-progress-bar-bg {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .quiz-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--QII-gold), var(--accent-orange));
+      transition: width 0.4s;
+    }
+
+    .quiz-stats {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .quiz-stat {
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+      background: var(--QII-light);
+    }
+
+    .fc-stats {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+    .fc-stat {
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 700;
+      color: #fff;
+      font-size: 0.95rem;
+    }
+    .fc-stat.good {
+      background: #38a169;
+    }
+    .fc-stat.bad {
+      background: #e53e3e;
+    }
+    .fc-stat.pending {
+      background: #4a5568;
+    }
+    .fc-stat.total {
+      background: var(--QII-blue);
+    }
+
+    .fc-progress {
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 5px;
+      overflow: hidden;
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+    }
+    .fc-progress-bar {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--QII-gold), var(--accent));
+      transition: width 0.4s;
+    }
+
+    .flashcard-scene {
+      perspective: 1400px;
+      max-width: 720px;
+      height: 320px;
+      margin: 0 auto 1.5rem;
+    }
+    .flashcard {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s;
+      cursor: pointer;
+    }
+    .flashcard.flipped {
+      transform: rotateY(180deg);
+    }
+    .fc-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 16px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: auto;
+      box-shadow: 0 8px 24px var(--shadow);
+      font-size: 1.15rem;
+    }
+    .fc-front {
+      background: linear-gradient(135deg, var(--QII-dark), var(--QII-blue));
+      color: #fff;
+      border: 3px solid var(--QII-gold);
+    }
+    .fc-back {
+      background: linear-gradient(135deg, #fff, #fefcbf);
+      color: var(--text);
+      border: 3px solid var(--QII-gold);
+      transform: rotateY(180deg);
+    }
+    .fc-label {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      color: var(--QII-gold);
+      margin-bottom: 1rem;
+    }
+    .fc-hint {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .fc-controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .fc-btn {
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      color: #fff;
+    }
+    .fc-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .fc-btn.good {
+      background: #38a169;
+    }
+    .fc-btn.bad {
+      background: #e53e3e;
+    }
+    .fc-btn:not(:disabled):hover {
+      transform: translateY(-3px);
+    }
+
+    .map-container {
+      overflow-x: auto;
+      padding: 1rem 0;
+    }
+    .map-tree,
+    .map-tree ul {
+      list-style: none;
+      margin: 0;
+      padding-left: 0;
+    }
+    .map-tree ul {
+      display: none;
+      padding-left: 1.6rem;
+      margin: 0.6rem 0 0;
+      border-left: 3px solid var(--QII-gold);
+    }
+    .map-tree li.open>ul {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    .map-tree li {
+      margin: 0.4rem 0;
+    }
+    .map-node {
+      display: inline-block;
+      background: var(--QII-dark);
+      color: #fff;
+      padding: 0.6rem 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      border: 1px solid var(--QII-gold);
+    }
+    .map-node:hover {
+      background: var(--QII-gold);
+      color: var(--QII-dark);
+      transform: translateX(4px);
+    }
+    .map-node.root {
+      background: var(--accent);
+      color: white;
+      font-size: 1.15rem;
+      border: none;
+    }
+    .map-node.branch {
+      background: var(--QII-blue);
+    }
+    .map-leaf {
+      display: inline-block;
+      background: #fff;
+      color: var(--text);
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      border: 2px solid var(--QII-gold);
+    }
+    li.has-children>.map-node::before {
+      content: '▶ ';
+      font-size: 0.8em;
+    }
+    li.has-children.open>.map-node::before {
+      content: '▼ ';
+      font-size: 0.8em;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .tab {
+      background: #e2e8f0;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .tab.active {
+      background: var(--QII-gold);
+      color: var(--QII-dark);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .footer {
+      background: var(--QII-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 2.5rem;
+      margin-top: 3rem;
+      border-top: 5px solid var(--QII-gold);
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+      h3 {
+        font-size: 1.2rem;
+      }
+      .logo-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .logo-qii {
+        width: 80px;
+      }
+      .container {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .nav-buttons {
+        gap: 0.5rem;
+      }
+      .nav-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+      }
+      .quiz-options {
+        grid-template-columns: 1fr;
+      }
+      .tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+      }
+      .tab {
+        flex-shrink: 0;
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+      .flashcard-scene {
+        height: 360px;
+      }
+      .fc-face {
+        font-size: 1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo-container">
+      <img src="Logo-QII.png" alt="Logo QII" class="logo-qii" />
+      <div>
+        <h1>QUÍMICA II</h1>
+        <p class="subtitle">Unidad 3: Equilibrios</p>
+        <p class="subtitle">Clase 9: Soluciones Amortiguadoras</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-container">
+    <div class="nav-buttons" id="navButtons">
+      <button class="nav-btn active" type="button" data-section="inicio">🏠 Inicio</button>
+      <button class="nav-btn" type="button" data-section="conceptos">📚 Conceptos</button>
+      <button class="nav-btn" type="button" data-section="mapa">🗺️ Mapa</button>
+      <button class="nav-btn" type="button" data-section="flashcards">🃏 Flashcards</button>
+      <button class="nav-btn" type="button" data-section="calculadoras">🧮 Herramientas</button>
+      <button class="nav-btn" type="button" data-section="aplicaciones">🏥 Aplicaciones</button>
+      <button class="nav-btn" type="button" data-section="mnemotecnias">🧠 Mnemotecnias</button>
+      <button class="nav-btn" type="button" data-section="glosario">📖 Glosario</button>
+      <button class="nav-btn" type="button" data-section="errores">⚠️ Errores</button>
+      <button class="nav-btn" type="button" data-section="bibliografia">📚 Bibliografía</button>
+      <button class="nav-btn" type="button" data-section="quiz">🎯 Quiz</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- ============ INICIO ============ -->
+    <section id="inicio" class="section active">
+      <div class="card">
+        <h2>🎯 Resultados del Aprendizaje</h2>
+        <div class="info-box">
+          <ul style="font-size:1.1rem; line-height:2;">
+            <li>✓ Comprender qué son las soluciones amortiguadoras y su importancia en sistemas biológicos.</li>
+            <li>✓ Identificar los componentes de un amortiguador (ácido débil + base conjugada / base débil + ácido conjugado).</li>
+            <li>✓ Explicar el efecto del ión común y su relación con el principio de Le Chatelier.</li>
+            <li>✓ Distinguir entre amortiguadores ácidos y básicos.</li>
+            <li>✓ Aplicar la ecuación de Henderson‑Hasselbalch para calcular el pH de una solución amortiguadora.</li>
+            <li>✓ Calcular el pH de un amortiguador después de la adición de pequeñas cantidades de ácido o base fuerte.</li>
+            <li>✓ Seleccionar el sistema amortiguador adecuado según el pH deseado y evaluar su capacidad.</li>
+          </ul>
+        </div>
+
+        <h3>🔬 Relevancia Profesional</h3>
+        <div class="bio-box">
+          <div>
+            <strong>¿Por qué el estudiante de ciencias de la salud debe dominar las soluciones amortiguadoras?</strong>
+            <ul style="font-size:1rem; margin-top:1rem;">
+              <li>• <strong>Fisiología:</strong> El pH sanguíneo se mantiene en 7.35‑7.45 gracias al sistema amortiguador bicarbonato/ácido carbónico. Fallos en este sistema provocan acidosis o alcalosis.</li>
+              <li>• <strong>Farmacia:</strong> La absorción y distribución de muchos fármacos (ácidos o bases débiles) depende del pH y de los amortiguadores presentes en el organismo.</li>
+              <li>• <strong>Bioquímica:</strong> Las enzimas y proteínas funcionan en rangos de pH muy estrechos; los amortiguadores intracelulares (fosfato, proteínas) mantienen la homeostasis.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONCEPTOS ============ -->
+    <section id="conceptos" class="section">
+      <div class="card">
+        <h2>📚 Conceptos Clave: Soluciones Amortiguadoras</h2>
+        <div id="conceptos-tabs" class="tab-group">
+          <div class="tabs" id="conceptosTabHeaders">
+            <button class="tab active" type="button" data-tab="sub-ioncomun">⚡ Efecto ión común</button>
+            <button class="tab" type="button" data-tab="sub-definicion">🧪 Definición y tipos</button>
+            <button class="tab" type="button" data-tab="sub-hh">📐 Ecuación HH</button>
+            <button class="tab" type="button" data-tab="sub-capacidad">📊 Capacidad y rango</button>
+            <button class="tab" type="button" data-tab="sub-calculos">🧮 Cálculos</button>
+            <button class="tab" type="button" data-tab="sub-bio">🩸 Amortiguadores biológicos</button>
+          </div>
+
+          <!-- EFECTO IÓN COMÚN -->
+          <div id="sub-ioncomun" class="tab-content active">
+            <h3>⚡ Efecto del ión común</h3>
+            <div class="info-box">
+              <p>Cuando se añade una sal que contiene un ión común a una solución de un electrolito débil, el equilibrio se desplaza hacia la formación de la especie no disociada (principio de Le Chatelier), disminuyendo la ionización del electrolito débil.</p>
+            </div>
+            <div class="tip-box">
+              <p><strong>Ejemplo:</strong> Disolución de acetato de sodio (CH<sub>3</sub>COONa) en ácido acético (CH<sub>3</sub>COOH).</p>
+              <p>CH<sub>3</sub>COONa → CH<sub>3</sub>COO⁻ + Na⁺ (electrolito fuerte)</p>
+              <p>CH<sub>3</sub>COOH ⇌ CH<sub>3</sub>COO⁻ + H⁺ (electrolito débil)</p>
+              <p>El ión acetato (CH<sub>3</sub>COO⁻) es común, por lo que el equilibrio del ácido se desplaza a la izquierda, disminuyendo [H⁺] y aumentando el pH.</p>
+            </div>
+            <div class="problem-box">
+              <p><strong>Cálculo comparativo:</strong></p>
+              <p>Calcular el pH de una solución de ácido acético 0.2 M y luego el pH al añadir 0.3 moles de acetato de sodio (en 1 L). Ka = 1.8×10⁻⁵.</p>
+              <details class="solution">
+                <summary>Ver desarrollo</summary>
+                <p><strong>Sin acetato:</strong> Ka = x²/(0.2‑x) → x = [H⁺] = 0.00189 M → pH = 2.72</p>
+                <p><strong>Con acetato:</strong> Ka = (0.3+x)·x/(0.2‑x) → x = [H⁺] = 1.2×10⁻⁵ M → pH = 4.92</p>
+                <p>El pH aumenta considerablemente debido al efecto del ión común.</p>
+              </details>
+            </div>
+          </div>
+
+          <!-- DEFINICIÓN Y TIPOS -->
+          <div id="sub-definicion" class="tab-content">
+            <h3>🧪 Definición y tipos de amortiguadores</h3>
+            <div class="info-box">
+              <p><strong>Definición:</strong> Una solución amortiguadora (buffer) es aquella que contiene un ácido débil y su base conjugada, o una base débil y su ácido conjugado, y que resiste cambios bruscos de pH cuando se añaden pequeñas cantidades de ácido o base, o cuando se diluye.</p>
+            </div>
+            <h4>Buffer ácido</h4>
+            <p>Formado por un ácido débil y su sal (base conjugada).</p>
+            <div class="tip-box">
+              <p>Ejemplo: HNO₂ / KNO₂</p>
+              <p>HNO₂ ⇌ H⁺ + NO₂⁻</p>
+              <p>KNO₂ → K⁺ + NO₂⁻</p>
+            </div>
+            <h4>Buffer básico</h4>
+            <p>Formado por una base débil y su sal (ácido conjugado).</p>
+            <div class="tip-box">
+              <p>Ejemplo: NH₃ / NH₄Cl</p>
+              <p>NH₃ + H₂O ⇌ NH₄⁺ + OH⁻</p>
+              <p>NH₄Cl → NH₄⁺ + Cl⁻</p>
+            </div>
+            <div class="img-container">
+              <p class="img-caption">Figura 1: Representación esquemática de un amortiguador ácido (HA/A⁻) y su acción al añadir H⁺ u OH⁻.</p>
+            </div>
+          </div>
+
+          <!-- ECUACIÓN HH -->
+          <div id="sub-hh" class="tab-content">
+            <h3>📐 Ecuación de Henderson‑Hasselbalch</h3>
+            <div class="tip-box">
+              <p><strong>Para amortiguadores ácidos:</strong></p>
+              <p>$$ \mathrm{pH} = \mathrm{p}K_a + \log \frac{[\text{base conjugada}]}{[\text{ácido}]} $$</p>
+              <p><strong>Para amortiguadores básicos:</strong></p>
+              <p>$$ \mathrm{pOH} = \mathrm{p}K_b + \log \frac{[\text{ácido conjugado}]}{[\text{base}]} $$</p>
+              <p>y $$ \mathrm{pH} = 14 - \mathrm{pOH} $$</p>
+            </div>
+            <div class="info-box">
+              <p>Esta ecuación es fundamental para calcular el pH de un amortiguador a partir de las concentraciones de sus componentes y la constante de disociación del ácido o base débil.</p>
+            </div>
+          </div>
+
+          <!-- CAPACIDAD Y RANGO -->
+          <div id="sub-capacidad" class="tab-content">
+            <h3>📊 Capacidad y rango de amortiguación</h3>
+            <div class="info-box">
+              <p><strong>Capacidad amortiguadora:</strong> Cantidad de ácido o base fuerte que puede neutralizar un amortiguador sin que el pH cambie apreciablemente. Depende de las concentraciones absolutas del par conjugado.</p>
+              <p><strong>Rango efectivo:</strong> El pH de un amortiguador es efectivo cuando la relación [base]/[ácido] está entre 0.1 y 10, es decir:</p>
+              <p>$$ \mathrm{pH} = \mathrm{p}K_a \pm 1 $$</p>
+              <p>Fuera de este rango, la capacidad amortiguadora es muy baja.</p>
+            </div>
+            <div class="problem-box">
+              <p><strong>Ejemplo:</strong> Para el sistema ácido acético/acetato (pKa = 4.74), el rango útil es pH 3.74 a 5.74.</p>
+            </div>
+          </div>
+
+          <!-- CÁLCULOS -->
+          <div id="sub-calculos" class="tab-content">
+            <h3>🧮 Cálculos de pH en amortiguadores</h3>
+            <div class="info-box">
+              <p>Cuando se añade un ácido fuerte (HCl) o una base fuerte (NaOH) a un amortiguador, el ácido reacciona con la base conjugada, y la base reacciona con el ácido débil. Se debe calcular el nuevo número de moles de cada especie y luego aplicar la ecuación de Henderson‑Hasselbalch.</p>
+            </div>
+            <div class="problem-box">
+              <p><strong>Ejemplo 1:</strong> Un amortiguador contiene CH₃COOH 0.1 M y CH₃COONa 0.1 M. Calcular el pH después de añadir 0.02 mol de HCl (en 1 L).</p>
+              <details class="solution">
+                <summary>Ver desarrollo</summary>
+                <p>Inicial: [ácido]=0.1, [base]=0.1. Al añadir HCl, el H⁺ reacciona con la base: CH₃COO⁻ + H⁺ → CH₃COOH.</p>
+                <p>Nuevas concentraciones: [ácido]=0.1+0.02=0.12; [base]=0.1‑0.02=0.08.</p>
+                <p>pH = 4.74 + log(0.08/0.12) = 4.56</p>
+              </details>
+            </div>
+            <div class="problem-box">
+              <p><strong>Ejemplo 2:</strong> Calcular el pH de un amortiguador HCOOH/HCOONa 0.20 M/0.15 M, Ka=1.6×10⁻⁴, y luego al añadir 0.01 mol de HCl y 0.015 mol de NaOH.</p>
+              <details class="solution">
+                <summary>Ver desarrollo</summary>
+                <p>pH inicial = pKa + log(0.15/0.20) = 3.7959 + log(0.75) = 3.6709.</p>
+                <p>Con HCl: [ácido]=0.21, [base]=0.14 → pH = 3.7959 + log(0.14/0.21) = 3.6198.</p>
+                <p>Con NaOH: [ácido]=0.185, [base]=0.165 → pH = 3.7959 + log(0.165/0.185) = 3.7462.</p>
+              </details>
+            </div>
+          </div>
+
+          <!-- AMORTIGUADORES BIOLÓGICOS -->
+          <div id="sub-bio" class="tab-content">
+            <h3>🩸 Amortiguadores biológicos importantes</h3>
+            <div class="bio-box">
+              <p><strong>Sistema bicarbonato (H₂CO₃ / HCO₃⁻):</strong> Principal amortiguador del plasma sanguíneo (pH 7.4). pKa₁ = 6.1 (a 37°C). La relación [HCO₃⁻]/[H₂CO₃] ≈ 20:1.</p>
+              <p>$$ \mathrm{pH} = 6.1 + \log\frac{[\mathrm{HCO_3^-}]}{[\mathrm{H_2CO_3}]} $$</p>
+            </div>
+            <div class="bio-box">
+              <p><strong>Sistema fosfato (H₂PO₄⁻ / HPO₄²⁻):</strong> Importante en el interior de las células y en la orina. pKa₂ = 7.21.</p>
+              <p>$$ \mathrm{pH} = 7.21 + \log\frac{[\mathrm{HPO_4^{2-}}]}{[\mathrm{H_2PO_4^-}]} $$</p>
+            </div>
+            <div class="bio-box">
+              <p><strong>Proteínas:</strong> Los grupos amino y carboxilo de las proteínas actúan como amortiguadores (ej. hemoglobina).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MAPA ============ -->
+    <section id="mapa" class="section">
+      <div class="card">
+        <h2>🗺️ Mapa Conceptual: Soluciones Amortiguadoras</h2>
+        <p style="margin-bottom:1rem;">Haz <strong>clic en cada nodo</strong> para desplegar u ocultar sus ramas.</p>
+        <div class="map-container">
+          <ul class="map-tree">
+            <li class="has-children open">
+              <div class="map-node root" onclick="toggleMap(this)">🧪 SOLUCIONES AMORTIGUADORAS</div>
+              <ul>
+                <li class="has-children">
+                  <div class="map-node branch" onclick="toggleMap(this)">⚡ Efecto ión común</div>
+                  <ul>
+                    <li><span class="map-leaf">Desplazamiento del equilibrio</span></li>
+                    <li><span class="map-leaf">Disminución de la ionización</span></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <div class="map-node branch" onclick="toggleMap(this)">🧪 Tipos</div>
+                  <ul>
+                    <li><span class="map-leaf">Ácido débil + base conjugada (buffer ácido)</span></li>
+                    <li><span class="map-leaf">Base débil + ácido conjugado (buffer básico)</span></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <div class="map-node branch" onclick="toggleMap(this)">📐 Ecuación HH</div>
+                  <ul>
+                    <li><span class="map-leaf">pH = pKa + log([A⁻]/[HA])</span></li>
+                    <li><span class="map-leaf">pOH = pKb + log([HB⁺]/[B])</span></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <div class="map-node branch" onclick="toggleMap(this)">📊 Capacidad</div>
+                  <ul>
+                    <li><span class="map-leaf">Depende de concentraciones absolutas</span></li>
+                    <li><span class="map-leaf">Rango útil: pH = pKa ± 1</span></li>
+                  </ul>
+                </li>
+                <li class="has-children">
+                  <div class="map-node branch" onclick="toggleMap(this)">🩸 Biológicos</div>
+                  <ul>
+                    <li><span class="map-leaf">Bicarbonato (sangre)</span></li>
+                    <li><span class="map-leaf">Fosfato (células)</span></li>
+                    <li><span class="map-leaf">Proteínas (hemoglobina)</span></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FLASHCARDS ============ -->
+    <section id="flashcards" class="section">
+      <div class="card">
+        <h2>🃏 Flashcards: Amortiguadores</h2>
+        <p>Haz <strong>clic en la tarjeta</strong> para voltearla.</p>
+        <div class="fc-stats">
+          <span class="fc-stat good">✅ Buenas: <span id="fc-good">0</span></span>
+          <span class="fc-stat bad">❌ Malas: <span id="fc-bad">0</span></span>
+          <span class="fc-stat pending">⏳ Pendientes: <span id="fc-left">0</span></span>
+        </div>
+        <div class="fc-progress"><div class="fc-progress-bar" id="fc-bar"></div></div>
+        <div class="flashcard-scene" id="fc-scene">
+          <div class="flashcard" id="fc-card">
+            <div class="fc-face fc-front">
+              <div class="fc-label">PREGUNTA</div>
+              <div id="fc-question"></div>
+              <span class="fc-hint">Clic para voltear ✨</span>
+            </div>
+            <div class="fc-face fc-back">
+              <div class="fc-label">RESPUESTA</div>
+              <div id="fc-answer"></div>
+            </div>
+          </div>
+        </div>
+        <div class="fc-controls" id="fc-controls">
+          <button class="fc-btn good" id="btn-fc-good" disabled>✅ La sabía</button>
+          <button class="fc-btn bad" id="btn-fc-bad" disabled>❌ No la sabía</button>
+        </div>
+        <div style="text-align:center;">
+          <button class="calc-button" id="resetFlashcardsBtn">🔄 Reiniciar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HERRAMIENTAS ============ -->
+    <section id="calculadoras" class="section">
+      <div class="card">
+        <h2>🧮 Herramientas Interactivas</h2>
+        <div id="herramientas-tabs" class="tab-group">
+          <div class="tabs" id="herramientasTabHeaders">
+            <button class="tab active" type="button" data-tab="calc-hh">📐 Calculadora Henderson‑Hasselbalch</button>
+            <button class="tab" type="button" data-tab="calc-adicion">➕ Adición de ácido/base</button>
+          </div>
+
+          <!-- CALCULADORA HH -->
+          <div id="calc-hh" class="tab-content active">
+            <div class="calculator">
+              <div class="calc-title">📐 pH de un amortiguador (Ecuación HH)</div>
+              <div class="calc-input-group">
+                <label>pKa del ácido débil:</label>
+                <input type="number" id="hh-pka" value="4.74" step="0.01" />
+              </div>
+              <div class="calc-input-group">
+                <label>Concentración de la base conjugada (M):</label>
+                <input type="number" id="hh-base" value="0.1" step="0.001" />
+              </div>
+              <div class="calc-input-group">
+                <label>Concentración del ácido débil (M):</label>
+                <input type="number" id="hh-acido" value="0.1" step="0.001" />
+              </div>
+              <button class="calc-button" type="button" id="calcHHBtn">Calcular pH</button>
+              <div id="res-hh" class="calc-result"></div>
+            </div>
+          </div>
+
+          <!-- CALCULADORA DE ADICIÓN -->
+          <div id="calc-adicion" class="tab-content">
+            <div class="calculator">
+              <div class="calc-title">➕ pH después de añadir ácido o base fuerte</div>
+              <div class="calc-input-group">
+                <label>pKa del ácido débil:</label>
+                <input type="number" id="add-pka" value="4.74" step="0.01" />
+              </div>
+              <div class="calc-input-group">
+                <label>Moles iniciales de ácido débil (mol):</label>
+                <input type="number" id="add-nHA" value="0.1" step="0.001" />
+              </div>
+              <div class="calc-input-group">
+                <label>Moles iniciales de base conjugada (mol):</label>
+                <input type="number" id="add-nA" value="0.1" step="0.001" />
+              </div>
+              <div class="calc-input-group">
+                <label>Tipo de adición:</label>
+                <select id="add-tipo">
+                  <option value="acido">Ácido fuerte (HCl)</option>
+                  <option value="base">Base fuerte (NaOH)</option>
+                </select>
+              </div>
+              <div class="calc-input-group">
+                <label>Cantidad añadida (mol):</label>
+                <input type="number" id="add-cant" value="0.01" step="0.001" />
+              </div>
+              <button class="calc-button" type="button" id="calcAddBtn">Calcular pH final</button>
+              <div id="res-add" class="calc-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APLICACIONES ============ -->
+    <section id="aplicaciones" class="section">
+      <div class="card">
+        <h2>🏥 Aplicaciones en Ciencias de la Salud</h2>
+        <div class="pharma-box">
+          <h3>🩸 Sistema amortiguador de la sangre</h3>
+          <p>El pH de la sangre arterial se mantiene en 7.4 gracias al sistema bicarbonato (H₂CO₃/HCO₃⁻). La relación normal es [HCO₃⁻] ≈ 24 mM y [H₂CO₃] ≈ 1.2 mM (relación 20:1). La ecuación de HH a 37°C (pKa = 6.1) da:</p>
+          <p>pH = 6.1 + log(20) = 7.4</p>
+          <p>La respiración regula la concentración de CO₂ (y por tanto de H₂CO₃), mientras que los riñones regulan el bicarbonato.</p>
+        </div>
+        <div class="bio-box">
+          <h3>💊 Absorción de fármacos</h3>
+          <p>Muchos fármacos son ácidos o bases débiles. Su ionización depende del pH del medio. Por ejemplo, la aspirina (ácido acetilsalicílico, pKa ≈ 3.5) se encuentra principalmente no ionizada en el estómago (pH 1.5), lo que facilita su absorción. En cambio, una base débil como la cafeína se ioniza en el estómago y se absorbe mejor en el intestino (pH 6-7).</p>
+        </div>
+        <div class="bio-box">
+          <h3>🧬 Amortiguadores en el laboratorio</h3>
+          <p>En bioquímica y biología molecular se usan amortiguadores como Tris, Hepes o fosfato para mantener el pH óptimo durante reacciones enzimáticas, electroforesis y cultivos celulares.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MNEMOTECNIAS ============ -->
+    <section id="mnemotecnias" class="section">
+      <div class="card">
+        <h2>🧠 Mnemotecnias</h2>
+        <div class="mnemonic-card">
+          <div class="mnemonic-title">Ecuación de Henderson‑Hasselbalch</div>
+          <p><strong>"pH = pKa + log( Base / Ácido )"</strong></p>
+          <p>Recuerda: <strong>B</strong>ase sobre <strong>A</strong>cido, y la <strong>B</strong> es la que se <strong>B</strong>ebe (base) para neutralizar.</p>
+        </div>
+        <div class="mnemonic-card">
+          <div class="mnemonic-title">Amortiguadores biológicos</div>
+          <p><strong>"Bicarbonato en sangre, Fosfato en células, Proteínas en todo"</strong></p>
+        </div>
+        <div class="mnemonic-card">
+          <div class="mnemonic-title">Rango útil</div>
+          <p><strong>"El pH = pKa ± 1"</strong> (uno para arriba, uno para abajo).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ GLOSARIO ============ -->
+    <section id="glosario" class="section">
+      <div class="card">
+        <h2>📖 Glosario</h2>
+        <div class="glossary-term" onclick="toggleGlossary(this)">
+          <strong>Efecto del ión común</strong>
+          <div class="glossary-definition">Desplazamiento de un equilibrio químico por la adición de un ión que ya está presente en el sistema. Disminuye la solubilidad o la ionización de un electrolito débil.</div>
+        </div>
+        <div class="glossary-term" onclick="toggleGlossary(this)">
+          <strong>Solución amortiguadora (buffer)</strong>
+          <div class="glossary-definition">Solución que contiene un ácido débil y su base conjugada, o una base débil y su ácido conjugado, y que resiste cambios de pH al añadir pequeñas cantidades de ácido o base.</div>
+        </div>
+        <div class="glossary-term" onclick="toggleGlossary(this)">
+          <strong>Capacidad amortiguadora</strong>
+          <div class="glossary-definition">Número de moles de ácido o base fuerte que un litro de amortiguador puede neutralizar sin que el pH cambie en más de una unidad.</div>
+        </div>
+        <div class="glossary-term" onclick="toggleGlossary(this)">
+          <strong>Ecuación de Henderson‑Hasselbalch</strong>
+          <div class="glossary-definition">Relación matemática que permite calcular el pH de un amortiguador a partir del pKa y de las concentraciones de la base conjugada y el ácido débil.</div>
+        </div>
+        <div class="glossary-term" onclick="toggleGlossary(this)">
+          <strong>pKa</strong>
+          <div class="glossary-definition">Logaritmo negativo de la constante de acidez (Ka). Indica la fuerza de un ácido débil; a menor pKa, mayor acidez.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ERRORES COMUNES ============ -->
+    <section id="errores" class="section">
+      <div class="card">
+        <h2>⚠️ Errores Comunes</h2>
+        <div class="error-card">
+          <div class="error-title">Error 1: Confundir ácido y base conjugada en la ecuación HH</div>
+          <p>Usar la concentración del ácido donde va la base y viceversa.</p>
+          <div class="correction"><strong>Correcto:</strong> pH = pKa + log( [base conjugada] / [ácido] ). La base conjugada es la especie que pierde un protón, el ácido es la que lo dona.</div>
+        </div>
+        <div class="error-card">
+          <div class="error-title">Error 2: Olvidar la estequiometría al añadir ácido o base fuerte</div>
+          <p>Al añadir HCl, éste reacciona con la base conjugada (A⁻) consumiendo una cantidad equimolar. Al añadir NaOH, reacciona con el ácido débil (HA).</p>
+          <div class="correction"><strong>Correcto:</strong> HCl + A⁻ → HA + Cl⁻ ; NaOH + HA → A⁻ + H₂O. Ajustar las concentraciones antes de aplicar HH.</div>
+        </div>
+        <div class="error-card">
+          <div class="error-title">Error 3: Usar el buffer fuera de su rango efectivo</div>
+          <p>Si la relación [base]/[ácido] es menor que 0.1 o mayor que 10, el buffer pierde eficacia.</p>
+          <div class="correction"><strong>Correcto:</strong> Seleccionar un ácido cuyo pKa esté dentro de ±1 unidad del pH deseado.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BIBLIOGRAFIA ============ -->
+    <section id="bibliografia" class="section">
+      <div class="card">
+        <h2>📚 Bibliografía</h2>
+        <ul>
+          <li>Chang, R., & Goldsby, K. A. (2017). <em>Química</em> (12va ed.). McGraw‑Hill. Capítulos 15 y 16.</li>
+          <li>Brown, T. L., LeMay, H. E., Bursten, B. E., & Murphy, C. J. (2014). <em>Química: la ciencia central</em> (12va ed.). Pearson. Capítulo 16.</li>
+          <li>Nelson, D. L., & Cox, M. M. (2017). <em>Principios de Bioquímica de Lehninger</em> (7ma ed.). W. H. Freeman. Capítulo 2 (agua y pH).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ QUIZ ============ -->
+    <section id="quiz" class="section">
+      <div class="card">
+        <h2>🎯 Quiz de Autoevaluación</h2>
+        <div class="quiz-container" id="quiz-box">
+          <div class="quiz-progress">
+            <div class="quiz-progress-bar-bg"><div class="quiz-progress-bar" id="quiz-bar"></div></div>
+          </div>
+          <div class="quiz-stats" id="quiz-stats-inline" style="display:flex; justify-content:space-between; margin-bottom:1rem; font-size:0.95rem;">
+            <span style="color:#D97706; font-weight:700;">Pregunta: <span id="quiz-current">1</span> de <span id="quiz-total">10</span></span>
+            <span style="color:#38a169; font-weight:700;">Puntaje: <span id="quiz-score">0</span> pts</span>
+          </div>
+          <div id="quiz-content"></div>
+          <div class="quiz-stats" id="quiz-stats" style="display:none;">
+            <span class="quiz-stat" style="background:#38a169;">✅ Correctas: <span id="quiz-correct">0</span></span>
+            <span class="quiz-stat" style="background:#e53e3e;">❌ Incorrectas: <span id="quiz-incorrect">0</span></span>
+            <span class="quiz-stat" style="background:var(--QII-blue);">🏆 Puntaje Final: <span id="quiz-final-score">0</span> pts</span>
+          </div>
+          <button class="calc-button" id="resetQuizBtn" style="display:none; margin-top:1rem;">🔄 Nuevas 10 preguntas</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 Química II - Plataforma Educativa Universitaria | Clase 9: Soluciones Amortiguadoras</p>
+  </footer>
+
+  <script>
+    // ======================== FUNCIONES GLOBALES ========================
+
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.querySelector(`.nav-btn[data-section="${id}"]`)?.classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function showTab(groupId, tabId) {
+      const group = document.getElementById(groupId);
+      if (!group) return;
+      group.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+      group.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      const targetContent = document.getElementById(tabId);
+      if (targetContent) targetContent.classList.add('active');
+      const tabBtn = group.querySelector(`.tab[data-tab="${tabId}"]`);
+      if (tabBtn) tabBtn.classList.add('active');
+      if (window.MathJax) MathJax.typeset();
+    }
+
+    function toggleMap(el) {
+      el.parentElement.classList.toggle('open');
+    }
+
+    function toggleGlossary(el) {
+      el.querySelector('.glossary-definition').classList.toggle('show');
+    }
+
+    // ======================== FLASHCARDS ========================
+
+    const flashcards = [
+      { q: "¿Qué es el efecto del ión común?", a: "Desplazamiento del equilibrio por la adición de un ión que ya está presente, disminuyendo la ionización del electrolito débil." },
+      { q: "¿Qué es una solución amortiguadora?", a: "Solución que contiene un ácido débil y su base conjugada (o viceversa) y resiste cambios de pH." },
+      { q: "Ecuación de Henderson‑Hasselbalch para buffer ácido", a: "pH = pKa + log([base conjugada]/[ácido])" },
+      { q: "Ecuación de Henderson‑Hasselbalch para buffer básico", a: "pOH = pKb + log([ácido conjugado]/[base]) ; pH = 14 - pOH" },
+      { q: "Rango efectivo de un amortiguador", a: "pH = pKa ± 1 (relación [base]/[ácido] entre 0.1 y 10)" },
+      { q: "¿Cuál es el sistema amortiguador principal de la sangre?", a: "Bicarbonato/ácido carbónico (H₂CO₃/HCO₃⁻)" },
+      { q: "¿Qué sucede al añadir HCl a un buffer ácido?", a: "El H⁺ reacciona con la base conjugada (A⁻), formando HA y disminuyendo la base." },
+      { q: "¿Qué sucede al añadir NaOH a un buffer ácido?", a: "El OH⁻ reacciona con el ácido débil (HA), formando A⁻ y agua, aumentando la base." },
+      { q: "¿Cómo se selecciona un ácido para preparar un buffer de pH deseado?", a: "Se elige un ácido cuyo pKa esté lo más cercano posible al pH deseado (dentro de ±1)." },
+      { q: "Ejemplo de buffer básico", a: "NH₃ (base débil) y NH₄Cl (sal de su ácido conjugado)." }
+    ];
+
+    let fcIdx = 0,
+      fcGood = 0,
+      fcBad = 0,
+      fcLeft = flashcards.length;
+
+    function updateFcStats() {
+      document.getElementById('fc-good').innerText = fcGood;
+      document.getElementById('fc-bad').innerText = fcBad;
+      document.getElementById('fc-left').innerText = fcLeft;
+      document.getElementById('fc-bar').style.width = ((fcGood + fcBad) / flashcards.length * 100) + '%';
+    }
+
+    function loadCard() {
+      if (fcIdx >= flashcards.length) {
+        document.getElementById('fc-question').innerHTML = "¡Terminaste las flashcards!";
+        document.getElementById('fc-answer').innerHTML = "Revisa tus estadísticas arriba.";
+        document.getElementById('btn-fc-good').disabled = true;
+        document.getElementById('btn-fc-bad').disabled = true;
+        return;
+      }
+      const card = flashcards[fcIdx];
+      document.getElementById('fc-question').innerHTML = card.q;
+      document.getElementById('fc-answer').innerHTML = card.a;
+      document.getElementById('fc-card').classList.remove('flipped');
+      document.getElementById('btn-fc-good').disabled = true;
+      document.getElementById('btn-fc-bad').disabled = true;
+      if (window.MathJax) MathJax.typeset();
+    }
+
+    function flipCard() {
+      const card = document.getElementById('fc-card');
+      card.classList.toggle('flipped');
+      if (card.classList.contains('flipped')) {
+        document.getElementById('btn-fc-good').disabled = false;
+        document.getElementById('btn-fc-bad').disabled = false;
+      }
+    }
+
+    function gradeCard(isGood) {
+      if (isGood) fcGood++;
+      else fcBad++;
+      fcLeft--;
+      fcIdx++;
+      updateFcStats();
+      loadCard();
+    }
+
+    function resetFlashcards() {
+      fcIdx = 0;
+      fcGood = 0;
+      fcBad = 0;
+      fcLeft = flashcards.length;
+      updateFcStats();
+      loadCard();
+    }
+
+    // ======================== CALCULADORAS ========================
+
+    // Calculadora HH
+    function calcHH() {
+      const pKa = parseFloat(document.getElementById('hh-pka').value);
+      const base = parseFloat(document.getElementById('hh-base').value);
+      const acido = parseFloat(document.getElementById('hh-acido').value);
+      if (isNaN(pKa) || isNaN(base) || isNaN(acido) || base <= 0 || acido <= 0) {
+        document.getElementById('res-hh').innerHTML = '<strong>Error:</strong> Ingresa valores positivos.';
+        document.getElementById('res-hh').classList.add('show');
+        return;
+      }
+      const pH = pKa + Math.log10(base / acido);
+      document.getElementById('res-hh').innerHTML =
+        `<strong>Resultado:</strong><br> pH = ${pH.toFixed(3)}<br> [base]/[ácido] = ${(base/acido).toFixed(3)}`;
+      document.getElementById('res-hh').classList.add('show');
+    }
+
+    // Calculadora de adición
+    function calcAdd() {
+      const pKa = parseFloat(document.getElementById('add-pka').value);
+      let nHA = parseFloat(document.getElementById('add-nHA').value);
+      let nA = parseFloat(document.getElementById('add-nA').value);
+      const tipo = document.getElementById('add-tipo').value;
+      const cant = parseFloat(document.getElementById('add-cant').value);
+
+      if (isNaN(pKa) || isNaN(nHA) || isNaN(nA) || isNaN(cant) || nHA < 0 || nA < 0 || cant < 0) {
+        document.getElementById('res-add').innerHTML = '<strong>Error:</strong> Ingresa valores positivos.';
+        document.getElementById('res-add').classList.add('show');
+        return;
+      }
+
+      if (tipo === 'acido') {
+        // HCl reacciona con A⁻
+        const react = Math.min(cant, nA);
+        nHA += react;
+        nA -= react;
+      } else {
+        // NaOH reacciona con HA
+        const react = Math.min(cant, nHA);
+        nHA -= react;
+        nA += react;
+      }
+
+      if (nHA <= 0 || nA <= 0) {
+        document.getElementById('res-add').innerHTML =
+          '<strong>Advertencia:</strong> Uno de los componentes se ha consumido, el buffer ha perdido su capacidad.';
+        document.getElementById('res-add').classList.add('show');
+        return;
+      }
+
+      const pH = pKa + Math.log10(nA / nHA);
+      document.getElementById('res-add').innerHTML =
+        `<strong>Resultado:</strong><br> pH final = ${pH.toFixed(3)}<br> Moles finales: HA = ${nHA.toFixed(4)}, A⁻ = ${nA.toFixed(4)}<br> Relación = ${(nA/nHA).toFixed(3)}`;
+      document.getElementById('res-add').classList.add('show');
+    }
+
+    // ======================== QUIZ ========================
+
+    // Base de 30 preguntas sobre amortiguadores
+    const questionBank = [
+      { q: "¿Qué es una solución amortiguadora?", options: ["Una solución que no cambia de pH nunca", "Una solución que contiene un ácido fuerte y su sal", "Una solución que contiene un ácido débil y su base conjugada, o viceversa", "Una solución que solo contiene agua"], correct: 2, exp: "Un buffer contiene un par conjugado (ácido débil/base conjugada o base débil/ácido conjugado)." },
+      { q: "¿Cuál es el efecto del ión común?", options: ["Aumenta la ionización de un electrolito débil", "Disminuye la ionización de un electrolito débil", "No afecta el equilibrio", "Aumenta la solubilidad"], correct: 1, exp: "El ión común desplaza el equilibrio hacia la forma no ionizada, disminuyendo la ionización." },
+      { q: "Ecuación de Henderson‑Hasselbalch para un buffer ácido:", options: ["pH = pKa + log([ácido]/[base])", "pH = pKa + log([base]/[ácido])", "pH = pKb + log([base]/[ácido])", "pH = 14 - pOH"], correct: 1, exp: "La forma correcta es pH = pKa + log([base conjugada]/[ácido])" },
+      { q: "¿Cuál es el rango efectivo de un amortiguador?", options: ["pH = pKa ± 2", "pH = pKa ± 1", "pH = pKa ± 0.5", "pH = pKa ± 3"], correct: 1, exp: "El rango útil es pKa ± 1, donde la relación [base]/[ácido] está entre 0.1 y 10." },
+      { q: "El sistema amortiguador principal de la sangre es:", options: ["Fosfato", "Bicarbonato/ácido carbónico", "Proteínas", "Acetato"], correct: 1, exp: "El sistema H₂CO₃/HCO₃⁻ es el más importante en la sangre." },
+      { q: "Al añadir HCl a un buffer ácido, ¿qué ocurre con la base conjugada?", options: ["Aumenta", "Disminuye", "No cambia", "Se convierte en ácido"], correct: 1, exp: "El H⁺ del HCl reacciona con la base conjugada (A⁻) formando HA, por lo que la base disminuye." },
+      { q: "Al añadir NaOH a un buffer ácido, ¿qué ocurre con el ácido débil?", options: ["Aumenta", "Disminuye", "No cambia", "Se convierte en base"], correct: 1, exp: "El OH⁻ reacciona con el ácido débil (HA) formando A⁻, por lo que el ácido disminuye." },
+      { q: "¿Cómo se selecciona el ácido adecuado para preparar un buffer de pH 7.4?", options: ["Se elige el que tenga el pKa más alto", "Se elige el que tenga el pKa más cercano a 7.4", "Se elige cualquier ácido débil", "Se elige un ácido fuerte"], correct: 1, exp: "El pKa debe ser lo más cercano posible al pH deseado (dentro de ±1)." },
+      { q: "¿Cuál de los siguientes pares forma un buffer ácido?", options: ["HCl / NaCl", "HNO₂ / KNO₂", "NH₃ / NH₄Cl", "H₂SO₄ / Na₂SO₄"], correct: 1, exp: "HNO₂ (ácido débil) y KNO₂ (su sal) forman un buffer ácido." },
+      { q: "¿Cuál de los siguientes pares forma un buffer básico?", options: ["CH₃COOH / CH₃COONa", "HNO₂ / KNO₂", "NH₃ / NH₄Cl", "HCl / NaCl"], correct: 2, exp: "NH₃ (base débil) y NH₄Cl (sal de su ácido conjugado) forman un buffer básico." },
+      { q: "La capacidad amortiguadora depende de:", options: ["Solo del pKa", "De las concentraciones absolutas del par conjugado", "Solo del pH", "De la temperatura únicamente"], correct: 1, exp: "La capacidad es mayor cuanto mayores sean las concentraciones de ambos componentes." },
+      { q: "Si un buffer tiene [base] = 0.2 M y [ácido] = 0.1 M, y pKa = 5.0, su pH es:", options: ["5.0", "5.3", "4.7", "5.6"], correct: 1, exp: "pH = 5.0 + log(0.2/0.1) = 5.0 + 0.301 = 5.301 ≈ 5.3" },
+      { q: "¿Qué sucede con el pH de un buffer si se diluye con agua?", options: ["Cambia drásticamente", "Permanece prácticamente constante", "Aumenta siempre", "Disminuye siempre"], correct: 1, exp: "La dilución no cambia la relación [base]/[ácido] (si ambos se diluyen igual), por lo que el pH se mantiene." },
+      { q: "El pKa del ácido acético es 4.74. Su rango efectivo es:", options: ["3.74 a 5.74", "4.74 a 5.74", "3.74 a 4.74", "4.74 a 6.74"], correct: 0, exp: "Rango = pKa ± 1 → 3.74 a 5.74" },
+      { q: "En la sangre, la relación [HCO₃⁻]/[H₂CO₃] es aproximadamente:", options: ["1:1", "20:1", "1:20", "10:1"], correct: 1, exp: "La relación es ~20:1 para mantener pH 7.4 (pKa=6.1)." },
+      { q: "¿Cuál de las siguientes afirmaciones sobre buffers es FALSA?", options: ["Resisten cambios de pH al añadir ácido o base", "Su pH se calcula con la ecuación HH", "Su capacidad es independiente de la concentración", "Deben tener un pKa cercano al pH deseado"], correct: 2, exp: "La capacidad SÍ depende de las concentraciones absolutas." },
+      { q: "Al añadir 0.01 mol de HCl a 1 L de buffer 0.1 M HA/A⁻, si inicialmente [HA]=[A⁻]=0.1 M, el pH final (pKa=4.74) es:", options: ["4.74", "4.56", "4.92", "4.37"], correct: 1, exp: "Tras la reacción, [HA]=0.11, [A⁻]=0.09. pH = 4.74 + log(0.09/0.11) = 4.56" },
+      { q: "El sistema buffer fosfato (H₂PO₄⁻/HPO₄²⁻) tiene pKa₂ = 7.21. Es efectivo para mantener pH:", options: ["6.21 a 8.21", "7.21 a 8.21", "6.21 a 7.21", "7.21 a 9.21"], correct: 0, exp: "Rango = 7.21 ± 1 → 6.21 a 8.21" },
+      { q: "¿Qué es el pKa?", options: ["El logaritmo de Ka", "El negativo del logaritmo de Ka", "La constante de basicidad", "El pH de un ácido fuerte"], correct: 1, exp: "pKa = -log(Ka)" },
+      { q: "Un buffer que contiene NH₃ y NH₄Cl se denomina:", options: ["Buffer ácido", "Buffer básico", "Buffer neutro", "Buffer anfótero"], correct: 1, exp: "NH₃ es una base débil, y NH₄Cl es su ácido conjugado, por lo tanto es un buffer básico." },
+      { q: "La ecuación de HH para un buffer básico es:", options: ["pH = pKa + log([base]/[ácido])", "pOH = pKb + log([ácido conjugado]/[base])", "pH = pKb + log([base]/[ácido])", "pOH = pKa + log([ácido]/[base])"], correct: 1, exp: "Para bases débiles: pOH = pKb + log([ácido conjugado]/[base])" },
+      { q: "¿Cuál de estos amortiguadores es importante en el interior de las células?", options: ["Bicarbonato", "Fosfato", "Acetato", "Citrato"], correct: 1, exp: "El sistema fosfato (H₂PO₄⁻/HPO₄²⁻) es clave en el medio intracelular." },
+      { q: "Si se añade NaOH a un buffer ácido, la concentración de la base conjugada (A⁻):", options: ["Disminuye", "Aumenta", "No cambia", "Se duplica"], correct: 1, exp: "NaOH neutraliza el ácido HA, produciendo A⁻, por lo que A⁻ aumenta." },
+      { q: "Para preparar un buffer de pH = 3.0, ¿qué ácido es más adecuado? (Datos: pKa HCOOH=3.74, CH₃COOH=4.74, H₂CO₃=6.35)", options: ["HCOOH", "CH₃COOH", "H₂CO₃", "Ninguno"], correct: 0, exp: "El pKa más cercano a 3.0 es el del ácido fórmico (3.74)." },
+      { q: "La capacidad amortiguadora de un buffer es máxima cuando:", options: ["[base] = [ácido]", "[base] > [ácido]", "[base] < [ácido]", "es independiente de la relación"], correct: 0, exp: "Cuando las concentraciones son iguales, la capacidad es máxima (pH = pKa)." },
+      { q: "El pH de un buffer ácido está determinado por:", options: ["La concentración de ácido fuerte", "La relación entre la base conjugada y el ácido débil", "La concentración de sal solamente", "La temperatura únicamente"], correct: 1, exp: "El pH depende de la relación [base]/[ácido] y del pKa." },
+      { q: "Al añadir una pequeña cantidad de HCl a un buffer básico (NH₃/NH₄⁺), el H⁺ reacciona con:", options: ["NH₃", "NH₄⁺", "Cl⁻", "Agua"], correct: 0, exp: "El H⁺ reacciona con la base NH₃ para formar NH₄⁺." },
+      { q: "¿Cuál es la principal función de los amortiguadores en los seres vivos?", options: ["Mantener el pH constante", "Aumentar la temperatura", "Disminuir la presión osmótica", "Facilitar la digestión"], correct: 0, exp: "Los buffers mantienen el pH en rangos estrechos necesarios para la vida." },
+      { q: "Si un buffer tiene pKa = 7.0 y pH = 6.0, la relación [base]/[ácido] es:", options: ["10", "1", "0.1", "0.01"], correct: 2, exp: "6.0 = 7.0 + log(base/ácido) → log(base/ácido) = -1 → base/ácido = 0.1" },
+      { q: "En la ecuación de Henderson‑Hasselbalch, ¿qué representa el término 'log([base]/[ácido])'?", options: ["El cociente de concentraciones", "La diferencia de pH", "La capacidad amortiguadora", "La constante de disociación"], correct: 0, exp: "Es el logaritmo del cociente entre la base conjugada y el ácido débil." }
+    ];
+
+    // Seleccionar 10 preguntas al azar
+    function selectRandomQuestions(amount = 10) {
+      const shuffled = [...questionBank];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled.slice(0, amount);
+    }
+
+    let quizQuestions = [];
+    let quizIdx = 0,
+      quizCorrect = 0,
+      quizIncorrect = 0;
+
+    function loadQuiz() {
+      const container = document.getElementById('quiz-content');
+      if (!container) return;
+
+      // Si no hay preguntas o se terminaron, seleccionar nuevas
+      if (quizQuestions.length === 0 || quizIdx >= quizQuestions.length) {
+        quizQuestions = selectRandomQuestions(10);
+        quizIdx = 0;
+        quizCorrect = 0;
+        quizIncorrect = 0;
+        document.getElementById('quiz-stats').style.display = 'none';
+        document.getElementById('resetQuizBtn').style.display = 'none';
+        document.getElementById('quiz-stats-inline').style.display = 'flex';
+        document.getElementById('quiz-current').innerText = '1';
+        document.getElementById('quiz-total').innerText = '10';
+        document.getElementById('quiz-score').innerText = '0';
+        document.getElementById('quiz-bar').style.width = '0%';
+      }
+
+      if (quizIdx >= quizQuestions.length) {
+        document.getElementById('quiz-stats-inline').style.display = 'none';
+        document.getElementById('quiz-stats').style.display = 'flex';
+        document.getElementById('resetQuizBtn').style.display = 'inline-block';
+        document.getElementById('quiz-correct').innerText = quizCorrect;
+        document.getElementById('quiz-incorrect').innerText = quizIncorrect;
+        document.getElementById('quiz-final-score').innerText = quizCorrect * 10; // 10 pts cada una
+        container.innerHTML = "<h3 style='color:#D97706; text-align:center;'>¡Quiz Finalizado!</h3><p style='text-align:center;'>Revisa tus resultados y presiona 'Nuevas 10 preguntas' para practicar más.</p>";
+        return;
+      }
+
+      const q = quizQuestions[quizIdx];
+      document.getElementById('quiz-current').innerText = quizIdx + 1;
+      document.getElementById('quiz-total').innerText = quizQuestions.length;
+      document.getElementById('quiz-score').innerText = quizCorrect * 10;
+      document.getElementById('quiz-bar').style.width = (quizIdx / quizQuestions.length * 100) + '%';
+
+      let html = `<div class="quiz-question-card"><div class="quiz-question">${quizIdx+1}. ${q.q}</div><div class="quiz-options">`;
+      q.options.forEach((opt, i) => {
+        html += `<button class="quiz-option" type="button" data-optindex="${i}">${opt}</button>`;
+      });
+      html += `</div><div class="quiz-explanation" id="quiz-exp-${quizIdx}">${q.exp}</div></div>`;
+      container.innerHTML = html;
+
+      container.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          checkQuiz(parseInt(this.dataset.optindex), q.correct, this);
+        });
+      });
+    }
+
+    function checkQuiz(selected, correct, btn) {
+      const parent = btn.closest('.quiz-question-card');
+      const opts = parent.querySelectorAll('.quiz-option');
+      opts.forEach(o => o.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.add('correct');
+        quizCorrect++;
+      } else {
+        btn.classList.add('incorrect');
+        opts[correct].classList.add('correct');
+        quizIncorrect++;
+      }
+      document.getElementById(`quiz-exp-${quizIdx}`).style.display = 'block';
+      quizIdx++;
+      setTimeout(loadQuiz, 1800);
+    }
+
+    function resetQuiz() {
+      quizQuestions = [];
+      quizIdx = 0;
+      quizCorrect = 0;
+      quizIncorrect = 0;
+      document.getElementById('quiz-stats').style.display = 'none';
+      document.getElementById('resetQuizBtn').style.display = 'none';
+      document.getElementById('quiz-stats-inline').style.display = 'flex';
+      loadQuiz();
+    }
+
+    // ============================================================
+    //  INICIALIZACIÓN
+    // ============================================================
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // 1. Navegación principal
+      document.querySelectorAll('.nav-btn[data-section]').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const sectionId = this.dataset.section;
+          showSection(sectionId);
+          if (sectionId === 'quiz') {
+            // Reiniciar el quiz al entrar para obtener nuevas preguntas
+            resetQuiz();
+          }
+        });
+      });
+
+      // 2. Tabs de Conceptos
+      const conceptosGroup = document.getElementById('conceptos-tabs');
+      conceptosGroup.querySelectorAll('.tab[data-tab]').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          const tabId = this.dataset.tab;
+          showTab('conceptos-tabs', tabId);
+        });
+      });
+
+      // 3. Tabs de Herramientas
+      const herramientasGroup = document.getElementById('herramientas-tabs');
+      herramientasGroup.querySelectorAll('.tab[data-tab]').forEach(tab => {
+        tab.addEventListener('click', function(e) {
+          const tabId = this.dataset.tab;
+          showTab('herramientas-tabs', tabId);
+        });
+      });
+
+      // 4. Flashcards
+      document.getElementById('fc-card').addEventListener('click', flipCard);
+      document.getElementById('btn-fc-good').addEventListener('click', function() { gradeCard(true); });
+      document.getElementById('btn-fc-bad').addEventListener('click', function() { gradeCard(false); });
+      document.getElementById('resetFlashcardsBtn').addEventListener('click', resetFlashcards);
+
+      // 5. Calculadoras
+      document.getElementById('calcHHBtn').addEventListener('click', calcHH);
+      document.getElementById('calcAddBtn').addEventListener('click', calcAdd);
+
+      // 6. Quiz
+      document.getElementById('resetQuizBtn').addEventListener('click', resetQuiz);
+
+      // 7. Inicializar flashcards y quiz (cargar primeras preguntas)
+      updateFcStats();
+      loadCard();
+      // Cargar quiz solo cuando se seleccione la pestaña, pero lo dejamos para que al iniciar no cargue.
+      // Pero si el usuario entra a quiz, se llama resetQuiz.
+      // Para que la primera vez funcione, cargamos quiz cuando se muestre la sección.
+      // Ya lo hacemos en el evento click.
+
+      // 8. Mostrar pestañas iniciales
+      showTab('conceptos-tabs', 'sub-ioncomun');
+      showTab('herramientas-tabs', 'calc-hh');
+
+      // 9. Si la sección quiz se muestra por URL, cargarlo
+      if (document.getElementById('quiz').classList.contains('active')) {
+        resetQuiz();
+      }
+    });
+  </script>
+
+</body>
+</html>
